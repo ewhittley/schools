@@ -1,3 +1,4 @@
+import os
 import requests
 from lxml import html
 
@@ -27,5 +28,20 @@ def get_tea_snapshot_data(file_level, file_set, file_type):
 	with open(output_data_file, 'wb') as download_file:
 		download_file.write(result.content)
 
+def get_multiple_years(file_level, year_range, file_type):
+	if "-" not in year_range:
+		print "year_range not provided in propert format. Please submit as YYYY-YYYY."
+	else:
+		year_split = year_range.split("-")
+		
+		start_year = year_split[0]
+		end_year = year_split[1]
+
+	for year in range(int(start_year), int(end_year)):
+		get_tea_snapshot_data(file_level, str(year)[-2:], file_type)
+
+		# print "start year: " + start_year + " end year: " + end_year
+
 if __name__ == '__main__':
-	get_tea_snapshot_data('district', '13', 'data')
+	get_multiple_years('district', '1999-2005', 'data')
+	# get_tea_snapshot_data('district', '13', 'data')
