@@ -9,15 +9,16 @@ def get_tea_snapshot_data(file_level, file_set, file_type):
 	snapshot_url = 'https://rptsvr1.tea.texas.gov/perfreport/snapshot/push.cgi' 
 
 	if file_type == 'data':
-		form_data = {'level': file_level, 'set': file_set, 'suf': '.dat'}
+		file_extension = '.dat'
 	elif file_type == 'descriptions':
-		form_data = {'level': file_level, 'set': file_set, 'suf': '.lyt'}
+		file_extension = '.lyt'
 	else:
 		print "not a valid file_type"
 
+	form_data = {'level': file_level, 'set': file_set, 'suf': file_extension}
 	result = session_requests.post(snapshot_url, data=form_data)
 
-	download_file_name = file_level + '_' + file_set + '.dat'
+	download_file_name = file_level + '_' + file_set + file_extension
 
 	current_directory = os.path.abspath(os.path.dirname( __file__ ))
 	output_data_directory = os.path.join(current_directory, 'output')
