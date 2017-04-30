@@ -32,12 +32,12 @@ def get_multiple_years(file_level, year_range, file_type):
 	if "-" not in year_range:
 		print "year_range not provided in propert format. Please submit as YYYY-YYYY."
 	else:
-		year_split = year_range.split("-")
+		data_years = [ int(year) for year in year_range.split("-") ]
 		
-		start_year = year_split[0]
-		end_year = year_split[1]
+		start_year = data_years[0]
+		end_year = data_years[-1]
 
-	for year in range(int(start_year), int(end_year)):
+	for year in range(start_year, end_year + 1):
 		get_tea_snapshot_data(file_level, str(year)[-2:], file_type)
 
 		# print "start year: " + start_year + " end year: " + end_year
