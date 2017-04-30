@@ -18,4 +18,11 @@ def csv_to_json(csv_file, headers='y'):
 
 
 if __name__ == '__main__':
-	csv_to_json('district.dat', 'y')
+	csv_file = sys.argv[1]
+
+	if len(sys.argv) > 2:
+		headers = sys.argv[3]
+	else:
+		headers = None
+
+	csv_to_json(csv_file, headers)

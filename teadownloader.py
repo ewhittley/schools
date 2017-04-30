@@ -1,4 +1,5 @@
 import os
+import sys
 import requests
 from lxml import html
 
@@ -43,5 +44,9 @@ def get_multiple_years(file_level, year_range, file_type):
 		# print "start year: " + start_year + " end year: " + end_year
 
 if __name__ == '__main__':
-	get_multiple_years('district', '1999-2005', 'data')
+	file_level = sys.argv[1]
+	file_set = sys.argv[2]
+	file_type = sys.argv[3]
+
+	get_multiple_years(file_level, file_set, file_type)
 	# get_tea_snapshot_data('district', '13', 'data')
